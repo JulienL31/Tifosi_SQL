@@ -54,3 +54,39 @@ CREATE TABLE menu (
     nom VARCHAR(50) NOT NULL,
     prix DECIMAL(5,2) NOT NULL
 );
+
+-- Table contient (menu → boisson)
+CREATE TABLE contient (
+    id_menu INT,
+    id_boisson INT,
+    PRIMARY KEY (id_menu, id_boisson),
+    FOREIGN KEY (id_menu) REFERENCES menu(id_menu),
+    FOREIGN KEY (id_boisson) REFERENCES boisson(id_boisson)
+);
+
+-- Table est_constitue (menu → focaccia)
+CREATE TABLE est_constitue (
+    id_menu INT,
+    id_focaccia INT,
+    PRIMARY KEY (id_menu, id_focaccia),
+    FOREIGN KEY (id_menu) REFERENCES menu(id_menu),
+    FOREIGN KEY (id_focaccia) REFERENCES focaccia(id_focaccia)
+);
+
+-- Table client
+CREATE TABLE client (
+    id_client INT PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL,
+    email VARCHAR(150) NOT NULL UNIQUE,
+    code_postal INT NOT NULL
+);
+
+-- Table achete
+CREATE TABLE achete (
+    id_client INT,
+    id_menu INT,
+    date_achat DATE,
+    PRIMARY KEY (id_client, id_menu, date_achat),
+    FOREIGN KEY (id_client) REFERENCES client(id_client),
+    FOREIGN KEY (id_menu) REFERENCES menu(id_menu)
+);
