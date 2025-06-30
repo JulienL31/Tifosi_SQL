@@ -10,3 +10,16 @@ USE tifosi;
 DROP USER IF EXISTS 'tifosi'@'localhost';
 CREATE USER 'tifosi'@'localhost' IDENTIFIED BY 'mdptifosi123';
 GRANT ALL PRIVILEGES ON tifosi.* TO 'tifosi'@'localhost';
+
+-- Table ingredient
+CREATE TABLE ingredient (
+    id_ingredient INT PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL UNIQUE
+);
+
+-- Table focaccia
+CREATE TABLE focaccia (
+    id_focaccia INT PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL UNIQUE,
+    prix DECIMAL(5,2) NOT NULL
+);
